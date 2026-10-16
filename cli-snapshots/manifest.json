@@ -1,0 +1,18 @@
+{
+  "sourceRepo": "quire-office/quire",
+  "tool": "quire-cli",
+  "toolVersion": "0.1.0",
+  "sourceCommit": "8d3f4017eaa8722342e14ce14a55024f9485dba9",
+  "capturedAt": "2026-10-17",
+  "capturedOn": "x86_64-unknown-linux-gnu, cargo run -p quire-cli (debug build)",
+  "note": "Real captured outputs, not transcriptions. cli-reference.md must stay consistent with these (docs-side gate: npm run check:cli). Re-running the binary against this manifest in the engine repo (trycmd-style) is planned at public release, so flag drift without a docs update fails CI there too.",
+  "files": [
+    { "name": "usage.txt", "command": "quire-cli (no args, stderr merged)" },
+    { "name": "info-fixture.txt", "command": "quire-cli info fixtures/sample.docx" },
+    { "name": "page0.json", "command": "quire-cli page fixtures/sample.docx 0" },
+    { "name": "render-fixture.txt", "command": "quire-cli render fixtures/sample.docx --out out/render-lab/quire-sample" },
+    { "name": "roundtrip-fixture-check.txt", "command": "quire-cli roundtrip fixtures/sample.docx --check" },
+    { "name": "roundtrip-out.txt", "command": "quire-cli roundtrip fixtures/sample.docx --out rt-out.docx" },
+    { "name": "roundtrip-corpus-summary.txt", "command": "quire-cli roundtrip corpus --check (summary line only)" }
+  ]
+}

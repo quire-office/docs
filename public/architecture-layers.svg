@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" font-family="ui-monospace, 'Cascadia Mono', 'Noto Sans Mono', monospace">
+  <rect width="860" height="430" fill="#FAF8F4"/>
+  <text x="430" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#111111">Quire layering — enforced in CI, not by convention</text>
+
+  <!-- shells -->
+  <g>
+    <rect x="40" y="60" width="200" height="56" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <text x="140" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">shells/native</text>
+    <text x="140" y="102" text-anchor="middle" font-size="11" fill="#555555">quire-cli (headless head)</text>
+
+    <rect x="40" y="140" width="200" height="56" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <text x="140" y="163" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">shells/web</text>
+    <text x="140" y="182" text-anchor="middle" font-size="11" fill="#555555">wasm bindgen + Canvas2D</text>
+
+    <rect x="40" y="220" width="200" height="56" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="140" y="243" text-anchor="middle" font-size="13" font-weight="700" fill="#111111">shells/web-collab</text>
+    <text x="140" y="262" text-anchor="middle" font-size="11" fill="#555555">lazy CRDT chunk</text>
+  </g>
+
+  <!-- engine-api -->
+  <g>
+    <rect x="330" y="140" width="170" height="56" rx="4" fill="#111111"/>
+    <text x="415" y="163" text-anchor="middle" font-size="13" font-weight="700" fill="#FAF8F4">core/engine-api</text>
+    <text x="415" y="182" text-anchor="middle" font-size="11" fill="#FAF8F4">sole entry point</text>
+  </g>
+
+  <!-- core crates -->
+  <g font-size="12">
+    <rect x="600" y="46" width="220" height="52" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <text x="710" y="67" text-anchor="middle" font-weight="700" fill="#111111">core/ooxml</text>
+    <text x="710" y="86" text-anchor="middle" font-size="11" fill="#555555">zip+XML, lossless parts</text>
+
+    <rect x="600" y="114" width="220" height="52" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <text x="710" y="135" text-anchor="middle" font-weight="700" fill="#111111">core/layout</text>
+    <text x="710" y="154" text-anchor="middle" font-size="11" fill="#555555">KP lines + pagination</text>
+
+    <rect x="600" y="182" width="220" height="52" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <text x="710" y="203" text-anchor="middle" font-weight="700" fill="#111111">core/render-trait</text>
+    <text x="710" y="222" text-anchor="middle" font-size="11" fill="#555555">display-list contract</text>
+
+    <rect x="600" y="250" width="220" height="52" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="710" y="271" text-anchor="middle" font-weight="700" fill="#111111">core/crdt</text>
+    <text x="710" y="290" text-anchor="middle" font-size="11" fill="#555555">loro adapter slot (Phase 4)</text>
+  </g>
+
+  <!-- arrows shells -> engine -->
+  <g stroke="#111111" stroke-width="2" fill="none">
+    <path d="M240 88 H285 V150 H330"/>
+    <path d="M240 168 H330"/>
+    <path d="M240 248 H285 V186 H330" stroke-dasharray="6 4"/>
+    <path d="M500 168 H550 V72 H600"/>
+    <path d="M500 168 H600"/>
+    <path d="M500 168 V276 H600" stroke-dasharray="6 4"/>
+  </g>
+  <g fill="#C43120">
+    <path d="M600 72 l-10 -5 v10 z"/>
+    <path d="M600 168 l-10 -5 v10 z"/>
+  </g>
+
+  <!-- forbidden edges -->
+  <g>
+    <path d="M140 56 C 260 38, 540 36, 700 40" fill="none" stroke="#C43120" stroke-width="2" stroke-dasharray="7 5"/>
+    <circle cx="430" cy="38" r="10" fill="#FAF8F4" stroke="#C43120" stroke-width="2"/>
+    <line x1="423" y1="45" x2="437" y2="31" stroke="#C43120" stroke-width="2"/>
+    <text x="446" y="33" font-size="11" fill="#C43120">shells/native → engine only (never core crates below it)</text>
+    <text x="56" y="395" font-size="11" fill="#C43120">core/crdt must never appear in the main wasm bundle — check-wasm-size.mjs scans export symbols</text>
+  </g>
+
+  <!-- target note -->
+  <g>
+    <rect x="40" y="316" width="780" height="60" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <text x="56" y="338" font-size="12" font-weight="700" fill="#111111">Every core crate must build for both targets:</text>
+    <text x="56" y="356" font-size="12" fill="#555555">x86_64 / arm64 native  ×  wasm32-unknown-unknown</text>
+    <text x="56" y="372" font-size="12" fill="#555555">dual-target is the premise of building both shells together</text>
+  </g>
+</svg>

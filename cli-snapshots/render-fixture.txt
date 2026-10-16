@@ -1,0 +1,1 @@
+render: fixtures/sample.docx → 2 頁 SVG ＋ out/render-lab/quire-sample/pagebreaks.json（14 段落）

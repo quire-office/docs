@@ -1,0 +1,18 @@
+{
+  "name": "quire-docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "check:links": "node scripts/check-links.mjs",
+    "check:cli": "node scripts/check-cli-docs.mjs",
+    "check": "npm run docs:build && npm run check:links && npm run check:cli"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  },
+  "license": "Apache-2.0"
+}

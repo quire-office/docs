@@ -1,0 +1,16 @@
+用法:
+      quire-cli info <file.docx>            頁數/段落數/保留 part 數
+      quire-cli page <file.docx> <n>        輸出第 n 頁顯示列表 JSON
+      quire-cli dump <file.docx>            輸出全部頁顯示列表 JSON
+      quire-cli render <file.docx> --out <dir>
+                headless 渲染：每頁 SVG（<stem>-p<頁碼>.svg）＋分頁斷點清單
+                （pagebreaks.json：每頁段落分佈/跨頁續排），供 render-lab 跨引擎比對。
+      quire-cli roundtrip <file|dir> [--out <path>] [--check]
+                                     [--allow part1,part2]
+                                     [--quarantine <quarantine.json>]
+                開檔→不動→存檔；--check 做 zip 結構級對照（dir＝corpus 全掃）。
+                非零離開碼＝有未觸碰部分失真。
+                --quarantine：隔離清單 JSON 檔，頂層 files 物件對應
+                「相對掃描根路徑（或檔名）→ 隔離原因」；
+                清單內檔案跳過評測、不計紅，於彙報單列示。dir 掃描未指定時
+                自動找 <dir>/quarantine.json。

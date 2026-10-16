@@ -1,0 +1,2 @@
+✓ fixtures/sample.docx（byte-identical，3 parts）
+roundtrip --check: 1 檔（另有 0 檔隔離不計紅），byte-identical 1，失敗 0

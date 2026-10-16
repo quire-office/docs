@@ -1,0 +1,11 @@
+檔案: fixtures/sample.docx
+頁數: 2
+段落數: 14
+保留 zip part 數: 3
+--- 第 0 頁預覽 ---
+  Quire 開源文書處理器樣本
+  這是一份用於 CI 的最小 DOCX 樣本。R&D 實體還原測試：amp 必須還原為 & 符號。
+  The quick brown fox jumps over the lazy dog. 開源原生文書處理器，目標是不卡
+  頓的專業排版。第 1 段。The quick brown fox jumps over the lazy dog. 開源原生
+  文書處理器，目標是不卡頓的專業排版。第 1 段。The quick brown fox jumps over
+  the lazy dog. 開源原生文書處理器，目標是不卡頓的專業排版。第 1 段。The quick
