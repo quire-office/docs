@@ -23,7 +23,7 @@ project's claims are:
 
 | Claim | Where it comes from | How to re-verify at release |
 |---|---|---|
-| 399/399 non-quarantined corpus files byte-identical | `quire-cli roundtrip corpus --check`, run locally on commit `8d3f401`; also the ★ round-trip gate in CI on ubuntu/macOS/Windows | `cargo run -p quire-cli -- roundtrip corpus --check` **[requires repo access]** |
+| 399/399 non-quarantined corpus files byte-identical | `quire-cli roundtrip corpus --check`, run locally on commit `8d3f401`; also the ★ round-trip gate in CI on ubuntu/Windows (macOS job paused for quota) | `cargo run -p quire-cli -- roundtrip corpus --check` **[requires repo access]** |
 | 400-file corpus, feature coverage, license whitelist | `corpus/manifest.json` + `scripts/verify_corpus.py` gates | `python3 scripts/verify_corpus.py` **[requires repo access]** |
 | p95 < 8 ms typing latency (500 pages) | CI input-latency gate + `core/layout/examples/p6_bench.rs` | `cargo run --release -p quire-layout --example p6_bench` **[requires repo access]** |
 | wasm first payload: CRDT absent by symbol scan | `scripts/check-wasm-size.mjs` CI gate | `cd shells/web && npm run build:wasm && npm run size` **[requires repo access]** |
@@ -64,7 +64,7 @@ From the repository status table (`README.md`, commit `8d3f401`):
 | Page geometry from `sectPr` (Letter/landscape/multi-section per page) | ✅ |
 | Paragraph cache + incremental pagination + budgeted reflow | ✅ |
 | Display-list contract + CLI render head + render-lab skeleton | ✅ |
-| Dual-target CI (3 OS × native + wasm32) + wasm split/size gate | ✅ |
+| Dual-target CI (2 OS × native + wasm32; macOS paused) + wasm split/size gate | ✅ |
 | Tables, headers/footers, columns, tracked changes | ⏳ Phase 3–4, driven by corpus green-light rate |
 | CRDT collaborative layer (loro adapter) | ⏳ Phase 4 (chunk + trait land today) |
 | XLSX / PPTX sibling crates | ⏳ After DOCX depth ("Then" milestones) |

@@ -25,7 +25,8 @@ engine and how pixels come out — lives in thin shells.
 ### 1. Layering is machine-enforced
 
 `core/` never imports shells; shells only ever import `quire-engine` — never a crate
-below it. `scripts/check-layering.sh` (run on every CI job, all three OSes) asserts
+below it. `scripts/check-layering.sh` (run on every CI job, ubuntu and Windows —
+macOS currently paused for quota) asserts
 this with `cargo tree`:
 
 - no `core` crate may depend on `quire-web` / `quire-cli` (even transitively for the
@@ -44,7 +45,8 @@ entangled.
 ### 2. Dual-target is the premise
 
 Every crate in `core/` must compile for `wasm32-unknown-unknown` — CI runs that gate
-on ubuntu, macOS (arm64 host *and* an extra amd64 clippy cell) and Windows. That's why
+on ubuntu and Windows (macOS paused for quota; when re-enabled it adds an arm64 host
+*and* an extra amd64 clippy cell). That's why
 the dependency list is deliberately narrow: `swash` is built without default features
 (system font discovery would make native and browser pagination disagree), and
 `unicode-linebreak` is a `no_std` table generator from `LineBreak.txt` with zero
