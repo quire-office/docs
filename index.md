@@ -18,7 +18,7 @@ hero:
       link: /guide/cli-reference
     - theme: alt
       text: GitHub
-      link: https://github.com/quire-office/quire
+      link: https://github.com/quire-office
 
 features:
   - icon:

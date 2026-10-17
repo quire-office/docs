@@ -106,6 +106,6 @@ hold us to.
 
 ## Where's the roadmap discussion / issue tracker?
 
-After public release: issues on [`quire-office/quire`](https://github.com/quire-office/quire).
+After public release: issues on `quire-office/quire`.
 Corpus-driven bugs are the most actionable kind — attach the `.docx` and the output
 of `roundtrip --check` on it, and the report is half-written.

@@ -68,7 +68,7 @@ export default defineConfig({
       },
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/quire-office/quire' },
+      { icon: 'github', link: 'https://github.com/quire-office' },
     ],
     footer: {
       message: 'Source code Apache-2.0 · brand assets CC BY 4.0 · fonts OFL 1.1.',

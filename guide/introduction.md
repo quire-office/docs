@@ -32,7 +32,7 @@ verify this on your own documents in one command.
 
 | Repository | Contents |
 |---|---|
-| [`quire-office/quire`](https://github.com/quire-office/quire) | The engine: `core/` crates, `shells/` adapters, CI gates, corpus, scripts, brand assets. |
+| `quire-office/quire` | The engine: `core/` crates, `shells/` adapters, CI gates, corpus, scripts, brand assets. |
 | This site (`quire-office/docs`) | These pages. |
 
 ::: warning Private until public release

@@ -72,6 +72,6 @@ From the repository status table (`README.md`, commit `8d3f401`):
 ## Where to ask
 
 Until the repository is public there is no issue tracker to point at. After public
-release, open issues on [`quire-office/quire`](https://github.com/quire-office/quire)
+release, open issues on `quire-office/quire`
 — the corpus makes most bug reports reproducible: attach the offending `.docx` and the
 output of `roundtrip --check` on it.
