@@ -65,9 +65,11 @@ From the repository status table (`README.md`, commit `8d3f401`):
 | Paragraph cache + incremental pagination + budgeted reflow | ✅ |
 | Display-list contract + CLI render head + render-lab skeleton | ✅ |
 | Dual-target CI (2 OS × native + wasm32; macOS paused) + wasm split/size gate | ✅ |
-| Tables, headers/footers, columns, tracked changes | ⏳ Phase 3–4, driven by corpus green-light rate |
-| CRDT collaborative layer (loro adapter) | ⏳ Phase 4 (chunk + trait land today) |
-| XLSX / PPTX sibling crates | ⏳ After DOCX depth ("Then" milestones) |
+| Tables (cross-page slicing, headers), headers/footers, style cascade, floating images, forced breaks | ✅ |
+| Columns (`w:cols`), tracked changes, remaining rendering gaps | ⏳ Ordered by corpus failure clusters |
+| CRDT collaborative layer (loro adapter) | ⏳ Adapter slot today |
+| XLSX sibling crate | ⏳ In progress (`core/xlsx`): workbook model first |
+| PPTX sibling crate | ⏳ After XLSX |
 
 ## Where to ask
 

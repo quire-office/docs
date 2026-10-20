@@ -14,7 +14,7 @@ engine and how pixels come out — lives in thin shells.
 | `quire-ooxml` | `core/ooxml` | DOCX: OPC container (hand-rolled ZIP + `quick-xml`), document model, **lossless part retention**, `sectPr` page geometry (`pgSz`/`pgMar`/type), zip-structure differ for `roundtrip --check`. |
 | `quire-layout` | `core/layout` | Line breaking (Knuth-Plass + UAX#14 opportunities), shaping with real font metrics (`swash`), pagination, paragraph-level cache, incremental/budgeted reflow, caret geometry. |
 | `quire-render-trait` | `core/render-trait` | The display-list contract: `PageDisplayList` / `DrawItem` (text runs, rects, rules) as plain serializable data. Core never draws pixels. |
-| `quire-crdt` | `core/crdt` | Collaboration backend trait + in-memory placeholder; loro adapter lands in Phase 4. Lives **only** in the lazy collab chunk. |
+| `quire-crdt` | `core/crdt` | Collaboration backend trait + in-memory placeholder; the loro adapter lands with the collaboration milestone. Lives **only** in the lazy collab chunk. |
 | `quire-engine` | `core/engine-api` | The sole entry point: opens documents, exposes page counts, display lists, edit operations, save and round-trip diff to shells. |
 | `quire-cli` | `shells/native` | Headless CLI (`info`/`page`/`dump`/`render`/`roundtrip`) — the CI evaluation head and future GUI host. |
 | `quire-web` | `shells/web` | `wasm-bindgen` adapter, zero business logic; JS side renders display-list JSON to Canvas2D. |

@@ -59,11 +59,11 @@ emits:
 - Every file carries a license entry in `corpus/manifest.json`; the gate rejects
   bare/unknown license strings — SPDX id *plus* concrete provenance.
 
-The gates encode what "done" means: phase-0 batch must stay at **100 % green**
-(a regression is red, forever), the expansion batch must stay **≥ 90 % green**, and
-anything excluded is quarantined *with a written reason*, counted separately in every
-summary. Tables of this rigor are why the roadmap says Phase 3–4 features are
-"driven by corpus green-light rate" — the corpus decides what's broken next.
+The gates encode what "done" means: every non-quarantined file must round-trip
+byte-identical — `roundtrip --check` is red if any single one drifts — and anything
+excluded is quarantined *with a written reason*, counted separately in every summary.
+That is why the roadmap says the next features are "ordered by the corpus failure
+clusters": the render-lab comparison ranks what's broken next, not a feature calendar.
 
 ## Why Rust, and why hand-roll the ZIP layer?
 

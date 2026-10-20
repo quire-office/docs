@@ -52,8 +52,11 @@ per-page size mismatches against `sectPr`). What to watch:
 - **Page-count convergence** — do we break pages where LibreOffice does?
 - **Divergence position** — a document that first diverges on page 1 is a systemic
   geometry issue; page 12 is a pagination-rule issue.
-- The known gaps behind current divergence: tables, headers/footers and columns are
-  Phase 3–4 (see [project status](./architecture-and-preview-notes#project-status-at-a-glance)).
+- The known gaps behind current divergence: columns (`w:cols`), tracked changes and
+  complex drawing families (see
+  [project status](./architecture-and-preview-notes#project-status-at-a-glance)).
+  Tables and headers/footers render today but are the usual suspects for layout
+  divergence in table-heavy files.
 
 ## Related commands
 
