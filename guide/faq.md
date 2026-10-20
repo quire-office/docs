@@ -34,9 +34,9 @@ the layout model its format demands: flow for DOCX, grid for XLSX, canvas for PP
 | Milestone | Scope |
 |---|---|
 | **Now** | DOCX: lossless round-trip + layout/pagination (this repository) |
-| **Phase 3–4** | DOCX depth: tables, headers/footers, columns, tracked changes — driven by corpus green-light rate; CRDT collaborative layer (loro adapter slot) |
-| **Then: XLSX** | `core/xlsx` on the same OPC/lossless core: workbook model, formula engine, sheet render list (charts later) |
-| **Then: PPTX** | `core/pptx`: slide/shape model reusing layout + shaping; presentation render list |
+| **In progress** | XLSX: `core/xlsx` on the same OPC container and round-trip gates — workbook model and cell parsing first, formula engine after |
+| **Next** | DOCX depth: tracked changes, columns, remaining rendering gaps — ordered by the corpus failure clusters; CRDT collaborative layer behind the loro adapter slot |
+| **Later** | PPTX: `core/pptx` — slide/shape model reusing layout + shaping; its own presentation render list |
 
 Shell strategy: shells stay in-tree until one of them ships releases of its own
 (installers / deployed app), its license diverges, or its contributor community
