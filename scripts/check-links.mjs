@@ -5,11 +5,9 @@
 //     (.vitepress/dist — run `npm run docs:build` first): every page exists and
 //     every #anchor matches a real heading id emitted by VitePress itself.
 //   * Every referenced asset (site-root paths) must exist under public/.
-//   * External links: github.com is EXCLUDED BY DEFAULT because the engine
-//     repository is still private (a public link checker would 404 on it until
-//     the flip). Re-enable github.com checking at public release by removing
-//     it from EXCLUDED_DOMAINS. Other external domains are fetched (HEAD,
-//     GET fallback) with retries.
+//   * External links: all domains are fetched (HEAD, GET fallback) with
+//     retries. github.com was excluded while the engine repository was
+//     private; the repo went public 2026-11-01 and the exclusion was lifted.
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,8 +17,6 @@ const DIST = join(ROOT, '.vitepress', 'dist');
 const PUBLIC = join(ROOT, 'public');
 
 const EXCLUDED_DOMAINS = [
-  // The engine repo is private until public release — remove this line then.
-  'github.com',
   // Our own canonical domain: only alive after the Pages deploy — verified by the
   // deploy itself, not by a pre-deploy fetch.
   'docs.quireoffice.dev',
@@ -196,5 +192,5 @@ if (problems.length) {
 }
 console.log(
   `✓ link check passed — ${mdFiles.length} markdown files, ${sitePages.size} built pages, ` +
-    `${external.size} external URLs checked (excluded by default: ${EXCLUDED_DOMAINS.join(', ')} — re-enable github.com at public release)`,
+    `${external.size} external URLs checked (excluded: ${EXCLUDED_DOMAINS.join(', ')})`,
 );

@@ -4,9 +4,8 @@
 it exists for CI evaluation and development before a graphical shell, and is built
 under the same layering rule as every shell — it may only import `quire-engine`.
 
-::: warning Repository private — commands tagged
-All commands below are tagged **[requires repo access]** until public release. The
-*output* blocks are real captures from `quire-cli` 0.1.0 (commit `8d3f401`,
+::: tip All commands run against a plain clone
+The *output* blocks below are real captures from `quire-cli` 0.1.0 (commit `8d3f401`,
 `fixtures/sample.docx`), not written descriptions, and CI re-verifies them against
 the binary (see [Docs snapshot gate](#docs-snapshot-gate)).
 :::
@@ -14,7 +13,7 @@ the binary (see [Docs snapshot gate](#docs-snapshot-gate)).
 ## Invocation
 
 ```bash
-cargo run -p quire-cli -- <command> [args] [flags]   # [requires repo access]
+cargo run -p quire-cli -- <command> [args] [flags]
 ```
 
 With no arguments (or fewer than a command + target) the usage text is printed to
@@ -35,7 +34,7 @@ stderr and the exit code is `2`.
 Quick document facts and the top lines of page 0.
 
 ```bash
-cargo run -p quire-cli -- info fixtures/sample.docx   # [requires repo access]
+cargo run -p quire-cli -- info fixtures/sample.docx
 ```
 
 ```text
@@ -61,7 +60,7 @@ Prints the `PageDisplayList` JSON for page *n* (0-based) — the same contract t
 browser shell consumes. Items carry x/y/size in points plus bold/italic flags.
 
 ```bash
-cargo run -p quire-cli -- page fixtures/sample.docx 0   # [requires repo access]
+cargo run -p quire-cli -- page fixtures/sample.docx 0
 ```
 
 ```json
@@ -89,7 +88,7 @@ continuations) for cross-engine comparison.
 | `--out <dir>` | Output directory (created if missing). **Required.** |
 
 ```bash
-cargo run -p quire-cli -- render fixtures/sample.docx --out out/render-lab/quire-sample   # [requires repo access]
+cargo run -p quire-cli -- render fixtures/sample.docx --out out/render-lab/quire-sample
 ```
 
 ```text
@@ -112,7 +111,7 @@ name order for reproducibility. Semantics in depth: [Lossless guarantee](./lossl
 | `--quarantine <quarantine.json>` | Skip-and-list files from a JSON manifest `{"files": {"<relpath or filename>": "<reason>"}}`. For a directory scan, `<dir>/quarantine.json` is auto-detected when the flag is omitted. |
 
 ```bash
-cargo run -p quire-cli -- roundtrip fixtures/sample.docx --check   # [requires repo access]
+cargo run -p quire-cli -- roundtrip fixtures/sample.docx --check
 ```
 
 ```text

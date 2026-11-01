@@ -27,7 +27,7 @@ docx ──▶ LibreOffice headless ──▶ PDF ──▶ PyMuPDF ──▶ pe
 ## Running it
 
 ```bash
-# [requires repo access] — needs LibreOffice and `python3 -m pip install --user pymupdf`
+# needs LibreOffice and `python3 -m pip install --user pymupdf`
 python3 scripts/render_lab.py --n 10          # first 10 files of the corpus manifest
 python3 scripts/render_lab.py a.docx b.docx   # or explicit files
 ```

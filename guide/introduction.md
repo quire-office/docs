@@ -2,8 +2,9 @@
 
 Quire is an open-source family of **lossless Office document engines written in Rust**.
 It parses, lays out, and saves real-world Office documents without silently corrupting
-anything it doesn't explicitly edit. What ships today is **DOCX**; XLSX and PPTX join
-later as sibling format crates on the same core (see [FAQ — format roadmap](./faq#what-is-the-format-roadmap)).
+anything it doesn't explicitly edit. What ships today is **DOCX**; XLSX, PPTX and the
+ODF family (ODT first) join later as sibling format crates on the same core
+(see [FAQ — format roadmap](./faq#what-is-the-format-roadmap)).
 
 Two properties define the project:
 
@@ -35,15 +36,15 @@ verify this on your own documents in one command.
 | `quire-office/quire` | The engine: `core/` crates, `shells/` adapters, CI gates, corpus, scripts, brand assets. |
 | This site (`quire-office/docs`) | These pages. |
 
-::: warning Private until public release
-The `quire` repository is currently private. Pages here describe the repository as it
-stands today; every claim is traceable to a file or command in it. Commands that need
-a checkout are tagged **[requires repo access]** and become copy-pasteable at public
-release.
+::: tip The repository is public
+Pages here describe the repository as it stands today; every claim is traceable to a
+file or command in [`quire-office/quire`](https://github.com/quire-office/quire), and
+every command is copy-pasteable against a plain clone.
 :::
 
 ## Where to go next
 
+- Want to see it render, no install → [Playground](./playground)
 - New here, no checkout needed → [Architecture & preview notes](./architecture-and-preview-notes)
 - Want the layout engine's shape → [Architecture](./architecture)
 - Want the save-safety story → [Lossless guarantee](./lossless-guarantee)

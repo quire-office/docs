@@ -34,9 +34,19 @@ the layout model its format demands: flow for DOCX, grid for XLSX, canvas for PP
 | Milestone | Scope |
 |---|---|
 | **Now** | DOCX: lossless round-trip + layout/pagination (this repository) |
-| **In progress** | XLSX: `core/xlsx` on the same OPC container and round-trip gates — workbook model and cell parsing first, formula engine after |
-| **Next** | DOCX depth: tracked changes, columns, remaining rendering gaps — ordered by the corpus failure clusters; CRDT collaborative layer behind the loro adapter slot |
+| **In progress** | XLSX: `core/xlsx` on the same OPC container and round-trip gates — an 80-file corpus with per-file licensing and a byte-identical round-trip gate is already collected; workbook model and cell parsing next, formula engine after |
+| **Next** | DOCX depth: the editing API (mutations + the lossless save chain), remaining rendering gaps — ordered by the corpus failure clusters; CRDT collaborative layer behind the loro adapter slot |
 | **Later** | PPTX: `core/pptx` — slide/shape model reusing layout + shaping; its own presentation render list |
+| **Planned** | ODF family: `core/odf` — ODT first, then ODS/ODP, on the same lossless container discipline. Honest scope: the ZIP layer and round-trip gate carry over; the OOXML part model does not. `text:sect` and `office:styles` are mapped from the OASIS spec, not guessed from DOCX. |
+
+Open formats are a first-class family goal next to OOXML, not an afterthought: the
+same core, the same lossless bar, and LibreOffice as ground truth for both.
+
+The product line built on the engine (each its own repository once it ships its own
+releases): the in-browser editor, a Tauri desktop app on the native core, and a
+self-hostable collaboration/storage server (Docker-first, Apache-2.0 like everything
+else). All Planned — see the public roadmap at
+[quireoffice.dev/roadmap](https://quireoffice.dev/roadmap).
 
 Shell strategy: shells stay in-tree until one of them ships releases of its own
 (installers / deployed app), its license diverges, or its contributor community
@@ -98,14 +108,15 @@ the renderer.
 
 ## Can I use Quire in my product today?
 
-Not yet — the repository is private and the feature set is DOCX-skeleton. The
-intended surface at public release: Apache-2.0 source (fonts and corpus keep their
-upstream licenses), `quire-engine` as a library, `quire-cli` for pipelines, and the
-wasm shell for browsers. The lossless guarantee and the CI gates are the contract to
-hold us to.
+The engine itself: yes — Apache-2.0 source, `quire-engine` as a library, `quire-cli`
+for pipelines, and the wasm shell for browsers (the lossless guarantee and the CI
+gates are the contract to hold us to). What doesn't exist yet is the editing surface:
+today's engine is read/render/round-trip, and the editing API is the next engine
+milestone. The product line around the engine (browser editor, Tauri desktop app,
+self-hostable collaboration server) is on the public roadmap.
 
 ## Where's the roadmap discussion / issue tracker?
 
-After public release: issues on `quire-office/quire`.
+Issues on [`quire-office/quire`](https://github.com/quire-office/quire/issues).
 Corpus-driven bugs are the most actionable kind — attach the `.docx` and the output
 of `roundtrip --check` on it, and the report is half-written.

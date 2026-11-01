@@ -1,9 +1,7 @@
 # Architecture & preview notes
 
-*This page was named "Getting started" in the original card. Because the source
-repository is still private, it has been renamed honestly: everything below is
-readable **without** repo access. Any command that needs a checkout is tagged
-**[requires repo access]** and becomes copy-pasteable at public release.*
+*The source repository is public: everything below is readable **and runnable**.
+Every command on this page is copy-pasteable against a plain clone.*
 
 ## What you can evaluate today
 
@@ -21,20 +19,18 @@ project's claims are:
 
 ## Reading the numbers in these docs
 
-| Claim | Where it comes from | How to re-verify at release |
+| Claim | Where it comes from | How to re-verify |
 |---|---|---|
-| 399/399 non-quarantined corpus files byte-identical | `quire-cli roundtrip corpus --check`, run locally on commit `8d3f401`; also the ★ round-trip gate in CI on ubuntu/Windows (macOS job paused for quota) | `cargo run -p quire-cli -- roundtrip corpus --check` **[requires repo access]** |
-| 400-file corpus, feature coverage, license whitelist | `corpus/manifest.json` + `scripts/verify_corpus.py` gates | `python3 scripts/verify_corpus.py` **[requires repo access]** |
-| p95 < 8 ms typing latency (500 pages) | CI input-latency gate + `core/layout/examples/p6_bench.rs` | `cargo run --release -p quire-layout --example p6_bench` **[requires repo access]** |
-| wasm first payload: CRDT absent by symbol scan | `scripts/check-wasm-size.mjs` CI gate | `cd shells/web && npm run build:wasm && npm run size` **[requires repo access]** |
+| 399/399 non-quarantined corpus files byte-identical | `quire-cli roundtrip corpus --check`, run locally on commit `8d3f401`; also the ★ round-trip gate in CI on ubuntu/Windows (macOS job paused for quota) | `cargo run -p quire-cli -- roundtrip corpus --check` |
+| 400-file corpus, feature coverage, license whitelist | `corpus/manifest.json` + `scripts/verify_corpus.py` gates | `python3 scripts/verify_corpus.py` |
+| p95 < 8 ms typing latency (500 pages) | CI input-latency gate + `core/layout/examples/p6_bench.rs` | `cargo run --release -p quire-layout --example p6_bench` |
+| wasm first payload: CRDT absent by symbol scan | `scripts/check-wasm-size.mjs` CI gate | `cd shells/web && npm run build:wasm && npm run size` |
 
-## Preview builds at public release
+## Building from source
 
-At public release the repository is a standard Cargo workspace — no services to
-provision, no API keys:
+The repository is a standard Cargo workspace — no services to provision, no API keys:
 
 ```bash
-# [requires repo access]
 git clone https://github.com/quire-office/quire.git && cd quire
 cargo test --workspace                                  # engine tests, incl. a real docx fixture
 cargo run -p quire-cli -- info fixtures/sample.docx     # pages / paragraphs / preserved parts
@@ -44,16 +40,16 @@ cargo run -p quire-cli -- roundtrip corpus --check      # the lossless gate, in 
 The browser demo (needs `wasm-pack` + Node):
 
 ```bash
-# [requires repo access]
 cd shells/web && npm install && npm run demo            # streaming wasm load + Canvas2D demo
 ```
+
+Want to see it without building anything? The hosted playground runs the same wasm
+engine entirely in your browser: <https://quireoffice.dev/playground/>.
 
 See [CLI reference](./cli-reference) for all flags and
 [render-lab](./render-lab) for the LibreOffice cross-engine diff harness.
 
 ## Project status at a glance
-
-From the repository status table (`README.md`, commit `8d3f401`):
 
 | Item | Status |
 |---|---|
@@ -63,17 +59,20 @@ From the repository status table (`README.md`, commit `8d3f401`):
 | Real font-metric shaping + golden break-point snapshots | ✅ |
 | Page geometry from `sectPr` (Letter/landscape/multi-section per page) | ✅ |
 | Paragraph cache + incremental pagination + budgeted reflow | ✅ |
-| Display-list contract + CLI render head + render-lab skeleton | ✅ |
+| Display-list contract + CLI render head + Canvas2D browser renderer + render-lab | ✅ |
 | Dual-target CI (2 OS × native + wasm32; macOS paused) + wasm split/size gate | ✅ |
-| Tables (cross-page slicing, headers), headers/footers, style cascade, floating images, forced breaks | ✅ |
-| Columns (`w:cols`), tracked changes, remaining rendering gaps | ⏳ Ordered by corpus failure clusters |
+| Tables (cross-page slicing with repeated headers), headers/footers, style cascade with conditional formatting, floating images, forced breaks | ✅ |
+| Columns (`w:cols`) flow re-layout | ✅ |
+| Tracked changes rendering (`w:ins`/`w:del` semantics: underline vs strikethrough per ECMA §17.13) | ✅ |
+| Table shading (`w:shd`, themeFill/tint) + picture duotone colour effects | ✅ |
+| Editing API (mutations + lossless save chain) | ⏳ The next engine milestone; see the public roadmap |
+| ODF family (`core/odf`: ODT first) | ⏳ Planned; mapped from the OASIS spec |
 | CRDT collaborative layer (loro adapter) | ⏳ Adapter slot today |
-| XLSX sibling crate | ⏳ In progress (`core/xlsx`): workbook model first |
+| XLSX sibling crate | ⏳ In progress (`core/xlsx`): OPC/lossless layer reused byte-identically, 80-file corpus with per-file licensing collected; workbook model next |
 | PPTX sibling crate | ⏳ After XLSX |
 
 ## Where to ask
 
-Until the repository is public there is no issue tracker to point at. After public
-release, open issues on `quire-office/quire`
+Open issues on [`quire-office/quire`](https://github.com/quire-office/quire/issues)
 — the corpus makes most bug reports reproducible: attach the offending `.docx` and the
 output of `roundtrip --check` on it.

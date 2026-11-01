@@ -15,7 +15,7 @@ round-trip byte-identical (the 400th is quarantined for CRC damage inherited fro
 upstream). ZIP64 records and unrecognized vendor extensions included.
 
 ```bash
-# [requires repo access] — captured output on fixtures/sample.docx:
+# captured output on fixtures/sample.docx:
 cargo run -p quire-cli -- roundtrip fixtures/sample.docx --check
 
 ✓ fixtures/sample.docx（byte-identical，3 parts）
@@ -61,7 +61,6 @@ Violation(...)       — untouched entry differs → red, non-zero exit
 ## `roundtrip --check`: the gate
 
 ```bash
-# [requires repo access]
 cargo run -p quire-cli -- roundtrip <file|dir> [--out <path>] [--check]
                                        [--allow part1,part2]
                                        [--quarantine <quarantine.json>]

@@ -11,6 +11,9 @@ hero:
     alt: Quire mark
   actions:
     - theme: brand
+      text: Open the playground
+      link: https://quireoffice.dev/playground/
+    - theme: alt
       text: Architecture & preview notes
       link: /guide/architecture-and-preview-notes
     - theme: alt
@@ -59,15 +62,14 @@ Quire is pre-release. What works today, from the repository as it stands:
 
 | Area | Today |
 |---|---|
-| Formats | DOCX today. XLSX in progress as a sibling crate (`core/xlsx`) on the same OPC container and round-trip layer; PPTX planned after it. |
+| Formats | DOCX today. XLSX in progress as a sibling crate (`core/xlsx`) on the same OPC container and round-trip layer — corpus and round-trip gates already collected; PPTX planned after it, with the ODF family (ODT first) planned alongside. |
 | Lossless round-trip | `roundtrip --check` gate over the 400-file corpus (1 file quarantined for upstream CRC damage); CI reports byte-identical counts per run. |
-| Layout | Knuth-Plass line breaking + UAX#14, `sectPr` page geometry, incremental pagination with p95 < 8 ms typing latency on a 500-page gate. |
-| Rendering | Display-list JSON contract + CLI SVG head + Canvas2D browser demo. Tables (cross-page slicing), headers/footers, style cascade and floating images landed; columns (`w:cols`) and tracked changes remain. |
+| Layout | Knuth-Plass line breaking + UAX#14, `sectPr` page geometry, multi-column `w:cols`, incremental pagination with p95 < 8 ms typing latency on a 500-page gate. |
+| Rendering | Display-list JSON contract + CLI SVG head + Canvas2D browser renderer. Tables (cross-page slicing with repeated headers), headers/footers, style cascade with conditional formatting, floating images, table shading, picture duotone and column layout landed; remaining gaps are ordered by the corpus failure clusters. |
+| Try it now | The browser playground renders `.docx` files entirely in your tab (wasm, read-only preview): <https://quireoffice.dev/playground/> |
 | Collaboration | CRDT adapter slot (`core/crdt`), split out of the first wasm payload; the loro adapter lands with the collaboration milestone. |
 
-::: warning The repository is private
-The Quire source repository is not public yet. Commands that require a checkout are
-marked **[requires repo access]** throughout these docs and will become copy-pasteable
-at public release. Everything else — architecture, CLI semantics, the lossless
-guarantee — is readable here without access.
+::: tip The repository is public
+Clone it and run the gates yourself — every command in these docs is
+copy-pasteable: <https://github.com/quire-office/quire>.
 :::

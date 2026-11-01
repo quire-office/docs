@@ -61,6 +61,7 @@ export default defineConfig({
       {
         text: 'Working with Quire',
         items: [
+          { text: 'Playground', link: '/guide/playground.html' },
           { text: 'CLI reference', link: '/guide/cli-reference.html' },
           { text: 'render-lab', link: '/guide/render-lab.html' },
           { text: 'FAQ', link: '/guide/faq.html' },
