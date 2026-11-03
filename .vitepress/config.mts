@@ -110,6 +110,33 @@ export default defineConfig({
       },
     },
   },
+  // 每頁補 canonical ＋ hreflang alternates（含 x-default＝英文）。
+  // VitePress 不自動產這些，而 config.head 只能放全站靜態陣列，所以走
+  // transformHead（build 期逐頁 hook）。缺了它們，繁中頁在搜尋引擎眼裡是
+  // 「另一份重複內容」而不是同一頁的語言變體，繁中頁也拿不到應有索引。
+  // URL 必須對齊 cleanUrls:false 的實際服務路徑（結尾 .html、首頁是根路徑），
+  // canonical 指向錯 URL 比沒有更糟。
+  transformHead(ctx) {
+    // VitePress 的 transformHead 給的是 pageData.relativePath（相對 root 的 .md 路徑），
+    // 不是 URL；對齊 cleanUrls:false 的實際服務路徑：一般頁 → .html、
+    // index.md → 根路徑、zh-tw/index.md → /zh-tw/（目錄頁）。
+    const urlPath = (md: string): string => {
+      if (md === 'index.md') return ''
+      if (md.endsWith('/index.md')) return md.slice(0, -'index.md'.length)
+      return md.replace(/\.md$/, '.html')
+    }
+    const self = urlPath(ctx.pageData.relativePath)
+    const isZh = self.startsWith('zh-tw/')
+    const base = isZh ? self.slice('zh-tw/'.length) : self
+    const at = (p: string) => `https://docs.quireoffice.dev/${p}`
+    // canonical 一律指向自己（self-referential）：把繁中頁的 canonical 指到
+    // 英文頁會讓繁中頁不被索引。語言變體關係由 hreflang alternates 宣告。
+    return [
+      ['link', { rel: 'canonical', href: at(self) }],
+      ['link', { rel: 'alternate', hreflang: 'x-default', href: at(base) }],
+      ['link', { rel: 'alternate', hreflang: 'zh-Hant-TW', href: at(`zh-tw/${base}`) }],
+    ]
+  },
   lastUpdated: true,
   // 排除清單：README.md 是 repo 說明檔、不是站內頁（納入 build 會被 VitePress
   // 語言選單當成有繁中對應頁的頁面，產出指向不存在的 /zh-tw/README.html 死連結）；
