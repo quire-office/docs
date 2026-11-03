@@ -3,7 +3,7 @@
 Quire is an open-source family of **lossless Office document engines written in Rust**.
 It parses, lays out, and saves real-world Office documents without silently corrupting
 anything it doesn't explicitly edit. What ships today is **DOCX**; XLSX, PPTX and the
-ODF family (ODT first) join later as sibling format crates on the same core
+ODF family (ODT first, prioritized ahead of PPTX) join as sibling format crates on the same core
 (see [FAQ — format roadmap](./faq#what-is-the-format-roadmap)).
 
 Two properties define the project:

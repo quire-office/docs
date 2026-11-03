@@ -62,7 +62,7 @@ Quire is pre-release. What works today, from the repository as it stands:
 
 | Area | Today |
 |---|---|
-| Formats | DOCX today. XLSX in progress as a sibling crate (`core/xlsx`) on the same OPC container and round-trip layer — corpus and round-trip gates already collected; PPTX planned after it, with the ODF family (ODT first) planned alongside. |
+| Formats | DOCX today. XLSX in progress as a sibling crate (`core/xlsx`) on the same OPC container and round-trip layer — corpus and round-trip gates already collected, cell-level read projection landed. The ODF family (ODT first) is prioritized ahead of PPTX — the word family (ODT, then legacy DOC) covers the most common document formats; the ODT corpus is being assembled now. |
 | Lossless round-trip | `roundtrip --check` gate over the 400-file corpus (1 file quarantined for upstream CRC damage); CI reports byte-identical counts per run. |
 | Layout | Knuth-Plass line breaking + UAX#14, `sectPr` page geometry, multi-column `w:cols`, incremental pagination with p95 < 8 ms typing latency on a 500-page gate. |
 | Rendering | Display-list JSON contract + CLI SVG head + Canvas2D browser renderer. Tables (cross-page slicing with repeated headers), headers/footers, style cascade with conditional formatting, floating images, table shading, picture duotone and column layout landed; remaining gaps are ordered by the corpus failure clusters. |

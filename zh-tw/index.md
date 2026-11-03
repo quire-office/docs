@@ -53,7 +53,7 @@ Quire 目前處於正式發布前階段（pre-release）。從程式庫現況來
 
 | 領域 | 現況 |
 |---|---|
-| 格式支援 | 目前支援 DOCX。XLSX 正由同一 OPC 封包容器與 roundtrip 層上的同級 crate（`core/xlsx`）推進中——已收錄語料庫與 roundtrip 閘門；其後規劃支援 PPTX，並同步規劃 ODF 家族（ODT 優先）。 |
+| 格式支援 | 目前支援 DOCX。XLSX 正由同一 OPC 封包容器與 roundtrip 層上的同級 crate（`core/xlsx`）推進中——已收錄語料庫與 roundtrip 閘門，儲存格級唯讀投影已落地。ODF 家族（ODT 優先）排在 PPTX 之前——文字家族（ODT，接著 legacy DOC）先覆蓋最常見的文件格式；ODT 語料庫正在建置。 |
 | 無損 roundtrip | 涵蓋 400 份檔案語料庫的 `roundtrip --check` 閘門（1 份檔案因上游 CRC 損壞而隔離）；每次 CI 執行均回報 byte-identical 計數。 |
 | 排版佈局 | Knuth-Plass 換行折行 + UAX#14、`sectPr` 頁面幾何、多欄 `w:cols`、增量分頁，在 500 頁閘門下達到 p95 < 8 ms 的打字延遲。 |
 | 渲染 | display list JSON 規格契約 + CLI SVG head + Canvas2D 瀏覽器渲染器。已支援表格（跨頁切分與重複表頭）、頁首／頁尾、樣式重疊階層（含條件式格式化）、浮動圖片、表格底紋、圖片雙色調（duotone）與分欄佈局；剩餘缺口依語料庫失敗分群排序。 |

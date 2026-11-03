@@ -1,6 +1,6 @@
 # 介紹
 
-Quire 是以 Rust 撰寫的開源無損 Office 文書引擎家族（lossless Office document engines）。它能解析、排版與儲存真實世界的 Office 檔案，絕不暗中損毀任何未明確編輯的內容。目前已提供的是 **DOCX**；XLSX、PPTX 以及 ODF 家族（ODT 優先）後續將作為同核心上的同級格式 crate 加入（請參閱 [FAQ — 格式路線圖](./faq#what-is-the-format-roadmap)）。
+Quire 是以 Rust 撰寫的開源無損 Office 文書引擎家族（lossless Office document engines）。它能解析、排版與儲存真實世界的 Office 檔案，絕不暗中損毀任何未明確編輯的內容。目前已提供的是 **DOCX**；XLSX、ODF 家族（ODT 優先，排在 PPTX 之前）與 PPTX 後續將作為同核心上的同級格式 crate 加入（請參閱 [FAQ — 格式路線圖](./faq#what-is-the-format-roadmap)）。
 
 本專案由兩項特性所定義：
 

@@ -37,7 +37,8 @@ the layout model its format demands: flow for DOCX, grid for XLSX, canvas for PP
 | **In progress** | XLSX: `core/xlsx` on the same OPC container and round-trip gates — an 80-file corpus with per-file licensing and a byte-identical round-trip gate is already collected; workbook model and cell parsing next, formula engine after |
 | **Next** | DOCX depth: the editing API (mutations + the lossless save chain), remaining rendering gaps — ordered by the corpus failure clusters; CRDT collaborative layer behind the loro adapter slot |
 | **Later** | PPTX: `core/pptx` — slide/shape model reusing layout + shaping; its own presentation render list |
-| **Planned** | ODF family: `core/odf` — ODT first, then ODS/ODP, on the same lossless container discipline. Honest scope: the ZIP layer and round-trip gate carry over; the OOXML part model does not. `text:sect` and `office:styles` are mapped from the OASIS spec, not guessed from DOCX. |
+| **Planned, prioritized ahead of PPTX** | ODF family: `core/odf` — ODT first, then ODS/ODP, on the same lossless container discipline. The ODT corpus is being assembled now. Honest scope: the ZIP layer and round-trip gate carry over; the OOXML part model does not. `text:sect` and `office:styles` are mapped from the OASIS spec, not guessed from DOCX. |
+| **Planned** | Legacy DOC (binary Word): the pre-OOXML format lives in an OLE compound file, not OPC — its own parser lane reusing the same layout and shaping crates downstream, read-only rendering first. Honest scope: MS-DOC carries more legacy behaviour than OOXML; the corpus survey names the gaps before code guesses them. |
 
 Open formats are a first-class family goal next to OOXML, not an afterthought: the
 same core, the same lossless bar, and LibreOffice as ground truth for both.

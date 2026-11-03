@@ -20,7 +20,8 @@ Quire 是 **Office 格式引擎家族**，而非只有野心的 DOCX 專案。�
 | **進行中** | XLSX：基於相同 OPC 容器與 roundtrip 閘門的 `core/xlsx`——已收錄 80 份具單檔授權的語料庫與 byte-identical roundtrip 閘門；下一步為工作表模型與儲存格解析，其後為公式引擎 |
 | **下一步** | DOCX 深度：editing API（變更操作 + 無損存檔鏈）、剩餘渲染缺口——依語料庫失敗分群排序；loro 介接插槽背後的 CRDT 協同層 |
 | **後續** | PPTX：`core/pptx`——重用排版與塑形的投影片／形狀模型；具備自身的簡報渲染清單 |
-| **規劃中** | ODF 家族：`core/odf`——ODT 優先，其後為 ODS/ODP，遵循相同的無損容器準則。誠實範疇：ZIP 層與 roundtrip 閘門可沿用；OOXML 部件模型不可重用。`text:sect` 與 `office:styles` 從 OASIS 規格映射，而非從 DOCX 猜測。 |
+| **規劃中（排在 PPTX 之前）** | ODF 家族：`core/odf`——ODT 優先，其後為 ODS/ODP，遵循相同的無損容器準則。ODT 語料庫正在建置。誠實範疇：ZIP 層與 roundtrip 閘門可沿用；OOXML 部件模型不可重用。`text:sect` 與 `office:styles` 從 OASIS 規格映射，而非從 DOCX 猜測。 |
+| **規劃中** | Legacy DOC（舊版 Word 二進位）：OOXML 之前的格式住在 OLE compound file 而非 OPC——走自己的解析線，下游沿用同一套排版與整形 crate，先做唯讀渲染。誠實範疇：MS-DOC 的歷史包袱比 OOXML 重，缺口由語料普查先點名，不由程式碼先猜。 |
 
 開放格式與 OOXML 並列為第一級家族目標，而非事後補充：相同的核心、相同的無損標準，並以 LibreOffice 作為兩者的客觀基準。
 
