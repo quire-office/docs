@@ -9,9 +9,11 @@
     "docs:preview": "vitepress preview",
     "check:links": "node scripts/check-links.mjs",
     "check:cli": "node scripts/check-cli-docs.mjs",
-    "check": "npm run docs:build && npm run check:links && npm run check:cli"
+    "check": "npm run docs:build && npm run check:links && npm run check:cli && npm run check:i18n",
+    "check:i18n": "node scripts/check-i18n.mjs"
   },
   "devDependencies": {
+    "opencc-js": "^1.4.2",
     "vitepress": "^1.6.3"
   },
   "license": "Apache-2.0"

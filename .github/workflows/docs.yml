@@ -42,6 +42,9 @@ jobs:
       - name: CLI docs ↔ captured snapshots consistency
         run: npm run check:cli
 
+      - name: 繁中本地化閘門（缺頁／圍欄被改／簡體字形／軟換行）
+        run: npm run check:i18n
+
       - name: configure Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/configure-pages@v5

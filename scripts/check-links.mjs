@@ -29,7 +29,9 @@ if (!existsSync(join(DIST, 'index.html'))) {
 
 function* walk(dir) {
   for (const e of readdirSync(dir)) {
-    if (e === 'node_modules' || e === '.git') continue;
+    // .worktrees/ 與 out/ 是本機 worktree 與建置產物的殘留副本，不是站內來源，
+    // 一併跳過（與 config 的 srcExclude 對齊），否則會拿過時檔案報假死連結。
+    if (e === 'node_modules' || e === '.git' || e === '.worktrees' || e === 'out') continue;
     const p = join(dir, e);
     if (statSync(p).isDirectory()) yield* walk(p);
     else yield p;
