@@ -11,7 +11,7 @@ all happen in the tab.
 |---|---|
 | Engine | `shells/web` — the same Rust core compiled to `wasm32-unknown-unknown`, with a thin `wasm-bindgen` glue layer. Zero business logic lives in JavaScript. |
 | Rendering | The engine emits its display-list JSON contract; a Canvas2D renderer in the page paints it. Same contract the CLI SVG head consumes. |
-| Mode | **Read-only preview.** Pagination, tables, images, shading — yes. Editing — not yet; the editing API is the next engine milestone. |
+| Mode | **Read-only preview.** Pagination, tables, images, shading — yes. Editing — not yet in this shell. The engine editing API has landed (v0.1.0-beta.12, see [Editing API](./editing)); wiring it into the playground is the next shell milestone. |
 | Privacy | Files are processed in-page; nothing is uploaded. |
 | First payload | The CRDT/collaboration code is physically absent from the wasm the playground loads — CI scans the symbols to enforce the split (see [Architecture](./architecture)). |
 

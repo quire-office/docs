@@ -38,6 +38,7 @@ export default defineConfig({
             items: [
               { text: 'Architecture', link: '/guide/architecture.html' },
               { text: 'Lossless guarantee', link: '/guide/lossless-guarantee.html' },
+              { text: 'Editing API', link: '/guide/editing.html' },
             ],
           },
           {
@@ -81,6 +82,7 @@ export default defineConfig({
             items: [
               { text: '架構', link: '/zh-tw/guide/architecture.html' },
               { text: '無損保證', link: '/zh-tw/guide/lossless-guarantee.html' },
+              { text: '編輯 API', link: '/zh-tw/guide/editing.html' },
             ],
           },
           {

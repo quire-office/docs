@@ -18,7 +18,7 @@ Quire 是 **Office 格式引擎家族**，而非只有野心的 DOCX 專案。�
 |---|---|
 | **目前** | DOCX：無損 roundtrip + 排版／分頁（本程式庫） |
 | **進行中** | XLSX：基於相同 OPC 容器與 roundtrip 閘門的 `core/xlsx`——80 份具單檔授權語料庫與 byte-identical roundtrip 閘門已收齊，讀取模型現已涵蓋工作表模型、儲存格投影（sharedStrings 上五種值型別）與樣式級聯（字型／填充／邊框／數字格式解析為 effective 樣式）；下一步為公式引擎 |
-| **下一步** | DOCX 深度：editing API（變更操作 + 無損存檔鏈）、剩餘渲染缺口——依語料庫失敗分群排序；loro 介接插槽背後的 CRDT 協同層 |
+| **下一步** | DOCX 深度：編輯 API 已在引擎落地（v0.1.0-beta.12——32 種 Mutation 變體，涵蓋文字與段落結構、字元格式與樣式、表格、圖片、節、頁首／頁尾與註腳尾註，附 Undo/Redo，每筆都經模型回放＋整份文件重排版）；剩下的工作是把它接進瀏覽器外殼，以及依語料庫失敗分群排序的剩餘渲染缺口；loro 介接插槽背後的 CRDT 協同層 |
 | **後續** | PPTX：`core/pptx`——重用排版與塑形的投影片／形狀模型；具備自身的簡報渲染清單 |
 | **規劃中（排在 PPTX 之前）** | ODF 家族：`core/odf`——ODT 優先，其後為 ODS/ODP，遵循相同的無損容器準則。50 檔 ODT 語料庫（逐檔授權、容器級普查並點名三檔違例樣本）已與代碼錨定版設計書一併落地；容器 crate 正依紅燈考卷建置中。誠實範疇：ZIP 層與 roundtrip 閘門可沿用；OOXML 部件模型不可重用。`text:sect` 與 `office:styles` 從 OASIS 規格映射，而非從 DOCX 猜測。 |
 | **規劃中** | Legacy DOC（舊版 Word 二進位）：OOXML 之前的格式住在 OLE compound file 而非 OPC——走自己的解析線，下游沿用同一套排版與整形 crate，先做唯讀渲染。誠實範疇：MS-DOC 的歷史包袱比 OOXML 重，缺口由語料普查先點名，不由程式碼先猜。 |
@@ -53,7 +53,7 @@ Quire 是 **Office 格式引擎家族**，而非只有野心的 DOCX 專案。�
 
 ## 我現在可以在產品中使用 Quire 嗎？
 
-引擎本身：可以——Apache-2.0 原始碼，`quire-engine` 作為函式庫，`quire-cli` 用於 pipeline，以及供瀏覽器使用的 wasm 外殼（無損保證與 CI 閘門即是約束我們的契約）。目前尚不存在的是編輯介面：目前的引擎支援讀取／渲染／roundtrip，而 editing API 是下一個引擎里程碑。圍繞該引擎的產品線（瀏覽器編輯器、Tauri 桌面應用程式、可自架的協同伺服器）已列於公開路線圖中。
+引擎本身：可以——Apache-2.0 原始碼，`quire-engine` 作為函式庫，`quire-cli` 用於 pipeline，以及供瀏覽器使用的 wasm 外殼（無損保證與 CI 閘門即是約束我們的契約）。編輯 API 已於 v0.1.0-beta.12 在引擎落地：32 種 Mutation 變體（文字與段落結構、字元格式與樣式、表格、圖片、節、頁首／頁尾、註腳尾註）直接作用於 OOXML 樹，每筆都經模型回放＋整份文件重排版，並附 Undo/Redo——請參閱[編輯 API 指南](./editing)。還沒有的是一個可編輯的公開 playground：瀏覽器外殼目前仍是唯讀渲染，把 mutation API 接進去是下一個外殼里程碑。圍繞該引擎的產品線（瀏覽器編輯器、Tauri 桌面應用程式、可自架的協同伺服器）已列於公開路線圖中。
 
 ## 路線圖討論／issue 追蹤在哪裡？
 

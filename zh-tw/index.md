@@ -57,6 +57,7 @@ Quire 目前處於正式發布前階段（pre-release）。從程式庫現況來
 | 無損 roundtrip | 涵蓋 400 份檔案語料庫的 `roundtrip --check` 閘門（1 份檔案因上游 CRC 損壞而隔離）；每次 CI 執行均回報 byte-identical 計數。 |
 | 排版佈局 | Knuth-Plass 換行折行 + UAX#14、`sectPr` 頁面幾何、多欄 `w:cols`、增量分頁，在 500 頁閘門下達到 p95 < 8 ms 的打字延遲。 |
 | 渲染 | display list JSON 規格契約 + CLI SVG head + Canvas2D 瀏覽器渲染器。已支援表格（跨頁切分與重複表頭）、頁首／頁尾、樣式重疊階層（含條件式格式化）、浮動圖片、表格底紋、圖片雙色調（duotone）與分欄佈局；剩餘缺口依語料庫失敗分群排序。 |
+| 編輯 | Mutation API 已在引擎落地：32 種變體作用於 OOXML 樹（文字／段落結構、字元格式與樣式、清單、表格、圖片、節、頁首／頁尾、註腳尾註），每筆都經模型回放＋整份文件重排版，並附 Undo/Redo——請參閱[編輯 API](/zh-tw/guide/editing.html)。瀏覽器外殼仍是唯讀渲染，接手進去是下一個外殼里程碑。 |
 | 立即試用 | 瀏覽器 playground 完全在分頁內渲染 `.docx` 檔案（wasm，唯讀預覽）：<https://quireoffice.dev/playground/> |
 | 協同編輯 | CRDT 介接插槽（`core/crdt`），自首包 wasm payload 拆出；loro 介接層將隨協同編輯里程碑落地。 |
 

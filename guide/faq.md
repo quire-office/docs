@@ -35,7 +35,7 @@ the layout model its format demands: flow for DOCX, grid for XLSX, canvas for PP
 |---|---|
 | **Now** | DOCX: lossless round-trip + layout/pagination (this repository) |
 | **In progress** | XLSX: `core/xlsx` on the same OPC container and round-trip gates — an 80-file corpus with per-file licensing and a byte-identical round-trip gate is collected, and the read model now covers the workbook model, cell projection (five value types over sharedStrings) and the style cascade (fonts/fills/borders/number formats resolved to effective styles); the formula engine comes next |
-| **Next** | DOCX depth: the editing API (mutations + the lossless save chain), remaining rendering gaps — ordered by the corpus failure clusters; CRDT collaborative layer behind the loro adapter slot |
+| **Next** | DOCX depth: the editing API has landed in the engine (v0.1.0-beta.12 — 32 mutation variants across text/paragraph structure, character formatting and styles, tables, images, sections, headers/footers and notes, with undo/redo, each mutation replayed through the model with full re-pagination); what remains is wiring it into the browser shell plus the remaining rendering gaps, ordered by the corpus failure clusters; CRDT collaborative layer behind the loro adapter slot |
 | **Later** | PPTX: `core/pptx` — slide/shape model reusing layout + shaping; its own presentation render list |
 | **Planned, prioritized ahead of PPTX** | ODF family: `core/odf` — ODT first, then ODS/ODP, on the same lossless container discipline. The 50-file ODT corpus (per-file licensing, container-level survey with three spec-violating files flagged) has landed together with the code-anchored design doc; the container crate is now cut from its red-light tests. Honest scope: the ZIP layer and round-trip gate carry over; the OOXML part model does not. `text:sect` and `office:styles` are mapped from the OASIS spec, not guessed from DOCX. |
 | **Planned** | Legacy DOC (binary Word): the pre-OOXML format lives in an OLE compound file, not OPC — its own parser lane reusing the same layout and shaping crates downstream, read-only rendering first. Honest scope: MS-DOC carries more legacy behaviour than OOXML; the corpus survey names the gaps before code guesses them. |
@@ -111,10 +111,16 @@ the renderer.
 
 The engine itself: yes — Apache-2.0 source, `quire-engine` as a library, `quire-cli`
 for pipelines, and the wasm shell for browsers (the lossless guarantee and the CI
-gates are the contract to hold us to). What doesn't exist yet is the editing surface:
-today's engine is read/render/round-trip, and the editing API is the next engine
-milestone. The product line around the engine (browser editor, Tauri desktop app,
-self-hostable collaboration server) is on the public roadmap.
+gates are the contract to hold us to). The editing API landed in the engine with
+v0.1.0-beta.12: 32 mutation variants (text and paragraph structure, character
+formatting and styles, tables, images, sections, headers/footers, footnotes/endnotes)
+applied to the OOXML tree, each replayed through the model with full-document
+re-pagination, plus undo/redo — documented in
+[the editing API guide](./editing). What is not there yet is the editing surface in
+the public playground: the browser shell still renders read-only, and wiring the
+mutation API into it is the next shell milestone. The product line around the engine
+(browser editor, Tauri desktop app, self-hostable collaboration server) is on the
+public roadmap.
 
 ## Where's the roadmap discussion / issue tracker?
 

@@ -8,7 +8,7 @@ Playground 是同一引擎的 wasm 建置版本，完全在你的瀏覽器中執
 |---|---|
 | 引擎 | `shells/web` —— 相同的 Rust 核心編譯為 `wasm32-unknown-unknown`，搭配輕量 `wasm-bindgen` 膠水層。JavaScript 中零商業邏輯。 |
 | 渲染 | 引擎發布其 display list JSON 契約；頁面中的 Canvas2D 渲染器負責繪製。與 CLI SVG head 使用完全相同的契約。 |
-| 模式 | **唯讀預覽。** 分頁、表格、圖片、底紋 —— 有。編輯 —— 尚未支援；editing API 是下一個引擎里程碑。 |
+| 模式 | **唯讀預覽。** 分頁、表格、圖片、底紋 —— 有。編輯 —— 這個外殼還沒有。引擎的編輯 API 已落地（v0.1.0-beta.12，見[編輯 API](./editing)）；把它接進 playground 是下一個外殼里程碑。 |
 | 隱私 | 檔案在頁面內處理；絕不上傳任何內容。 |
 | 首包 payload | playground 載入的 wasm 中實體不存在 CRDT／協同編輯程式碼 —— CI 透過掃描符號強制執行拆分（請參閱 [架構](./architecture)）。 |
 
